@@ -20,7 +20,7 @@ const EditNote = () => {
         const fetchNote = async () => {
             setIsLoading(true);
             try {
-                const response = await axios.get(`http://localhost:3000/api/notes/${id}`);
+                const response = await axios.get(`https://system-notes.vercel.app/api/notes/${id}`);
                 const note = response.data;
                 setTitle(note.title);
                 setContent(note.content);
@@ -42,7 +42,7 @@ const EditNote = () => {
         setError('');
         try {
             const updatedNote = { title, content, importance, dueDate };
-            await axios.put(`http://localhost:3000/api/notes/${id}`, updatedNote);
+            await axios.put(`https://system-notes.vercel.app/api/notes/${id}`, updatedNote);
             router.push('/notes/show');
         } catch (error) {
             setError('Error updating note. Please try again.');

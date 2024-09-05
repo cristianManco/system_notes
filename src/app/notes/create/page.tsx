@@ -35,7 +35,7 @@ const CreateNote = () => {
         dueDate,
         tags,
       };
-      await axios.post("http://localhost:3000/api/notes", newNote);
+      await axios.post("https://system-notes.vercel.app/api/notes", newNote);
       router.push("/notes/show");
     } catch (error) {
       setError("Error creando la nota. Por favor, intenta de nuevo.");

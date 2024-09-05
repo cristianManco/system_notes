@@ -26,7 +26,7 @@ const NoteList = () => {
     const fetchNotes = async (page = 1) => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`http://localhost:3000/api/notes?page=${page}&limit=6`);
+            const response = await axios.get(`https://system-notes.vercel.app/api/notes?page=${page}&limit=6`);
             const { notes, totalPages } = response.data;
             setNotes(notes); // Asignamos los datos de las notas
             setTotalPages(totalPages); // Establece el total de páginas desde la API
@@ -44,7 +44,7 @@ const NoteList = () => {
 
     const deleteNote = async (id: string) => {
         try {
-            await axios.delete(`http://localhost:3000/api/notes/${id}`);
+            await axios.delete(`https://system-notes.vercel.app/api/notes/${id}`);
             setNotes(notes.filter((note) => note._id !== id)); // Se usa `_id` para filtrar
         } catch (error) {
             console.error("Error deleting note:", error);

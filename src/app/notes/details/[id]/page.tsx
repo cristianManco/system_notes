@@ -30,7 +30,7 @@ const NoteDetails = ({ params }: { params: Params }) => {
   const fetchNoteDetails = useCallback(async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/notes/${params.id}`
+        `https://system-notes.vercel.app/api/notes/${params.id}`
       );
       setNote(response.data);
     } catch (error) {
@@ -44,7 +44,7 @@ const NoteDetails = ({ params }: { params: Params }) => {
 
   const deleteNote = async () => {
     try {
-      await axios.delete(`http://localhost:3000/api/notes/${params.id}`);
+      await axios.delete(`https://system-notes.vercel.app/api/notes/${params.id}`);
       router.push("/notes");
     } catch (error) {
       console.error("Error deleting note:", error);
