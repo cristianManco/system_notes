@@ -42,10 +42,10 @@ const NoteList = () => {
         fetchNotes(currentPage); // Obtiene las notas en la página actual
     }, [currentPage]);
 
-    const deleteNote = async (id: string) => {
+    const deleteNote = async (_id: string) => {
         try {
-            await axios.delete(`https://system-notes.vercel.app/api/notes/${id}`);
-            setNotes(notes.filter((note) => note._id !== id)); // Se usa `_id` para filtrar
+            await axios.delete(`https://system-notes.vercel.app/api/notes/${_id}`);
+            setNotes(notes.filter((note) => note._id !== _id)); // Se usa `_id` para filtrar
         } catch (error) {
             console.error("Error deleting note:", error);
         }

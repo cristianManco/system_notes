@@ -33,6 +33,7 @@ const NoteDetails = ({ params }: { params: Params }) => {
         `https://system-notes.vercel.app/api/notes/${params.id}`
       );
       setNote(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error("Error fetching note details:", error);
     }

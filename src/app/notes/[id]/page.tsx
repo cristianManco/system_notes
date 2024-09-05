@@ -22,6 +22,7 @@ const EditNote = () => {
             try {
                 const response = await axios.get(`https://system-notes.vercel.app/api/notes/${id}`);
                 const note = response.data;
+                console.log(note);
                 setTitle(note.title);
                 setContent(note.content);
                 setImportance(note.importance);
