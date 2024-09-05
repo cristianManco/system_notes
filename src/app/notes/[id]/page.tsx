@@ -1,7 +1,7 @@
 "use client";
 
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from "next/navigation";
 import { useParams } from 'next/navigation';
 import Sidebar from '@/menu/Sidebar';
@@ -36,7 +36,7 @@ const EditNote = () => {
         fetchNote();
     }, [id]);
 
-    const updateNote = async (e) => {
+    const updateNote = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsLoading(true);
         setError('');

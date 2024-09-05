@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import Sidebar from "@/menu/Sidebar";
 import {
@@ -22,7 +22,7 @@ const CreateNote = () => {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const createNote = async (e) => {
+  const createNote = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");

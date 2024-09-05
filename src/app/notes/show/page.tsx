@@ -6,21 +6,29 @@ import { useRouter } from "next/navigation";
 import { FiTrash2, FiEdit3, FiSearch, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Sidebar from "@/menu/Sidebar";
 
+// Definir la interfaz para las notas
+interface Note {
+    _id: string;
+    title: string;
+    content: string;
+    dueDate?: string; // La fecha de vencimiento puede ser opcional
+    importance: "low" | "medium" | "high"; // Definir los valores permitidos para la importancia
+}
+
 const NoteList = () => {
-    const [notes, setNotes] = useState([]);
+    const [notes, setNotes] = useState<Note[]>([]); // Tipamos el estado como un array de `Note`
     const [searchQuery, setSearchQuery] = useState("");
     const [isLoading, setIsLoading] = useState(true);
-    const [currentPage, setCurrentPage] = useState(1); // Estado para la página actual
-    const [totalPages, setTotalPages] = useState(1); // Estado para el total de páginas
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1); 
     const router = useRouter();
 
-    // Método para obtener las notas con paginación
     const fetchNotes = async (page = 1) => {
         setIsLoading(true);
         try {
             const response = await axios.get(`http://localhost:3000/api/notes?page=${page}&limit=6`);
             const { notes, totalPages } = response.data;
-            setNotes(notes);
+            setNotes(notes); // Asignamos los datos de las notas
             setTotalPages(totalPages); // Establece el total de páginas desde la API
             setCurrentPage(page); // Establece la página actual
         } catch (error) {
@@ -37,7 +45,7 @@ const NoteList = () => {
     const deleteNote = async (id: string) => {
         try {
             await axios.delete(`http://localhost:3000/api/notes/${id}`);
-            setNotes(notes.filter((note) => note._id !== id)); // se usa _id para filtrar
+            setNotes(notes.filter((note) => note._id !== id)); // Se usa `_id` para filtrar
         } catch (error) {
             console.error("Error deleting note:", error);
         }
@@ -50,7 +58,7 @@ const NoteList = () => {
 
     return (
         <div className="flex min-h-screen">
-            <Sidebar className="fixed top-0 left-0 h-screen w-16 bg-gray-800" />
+            <Sidebar/>
             <div className="ml-16 p-8 w-full overflow-x-auto">
                 <div className="flex justify-between items-center mb-6">
                     <h2 className="text-4xl font-bold shadow-red-500">📚 Your Notes</h2>
