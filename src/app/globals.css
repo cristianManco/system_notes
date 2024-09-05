@@ -16,18 +16,42 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+body {
+  filter: brightness(0.7);
+  background-color: rgba(3, 109, 113, 0.636);
+  color: #0b0101; 
+  font-family: 'Inter', sans-serif; 
+  margin: 0;
+  padding: 0;
+  height: auto;
+  transition: background 0.5s ease; /* Transiciones suaves en el fondo */
+}
+
+button {
+  color: #0a0101;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 5px 10px rgba(43, 1, 35, 0.534); /* Sombra para dar sensación de profundidad */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Suavidad al interactuar */
+}
+
+button:hover {
+  transform: translateY(-3px); /* Efecto de elevación al pasar el cursor */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.604); /* Sombras más pronunciadas al hacer hover */
+}
+
+input {
+  transition: border 0.3s ease;
+}
+
+input:focus {
+  border-color: #031114; /* Color de borde en focus */
+  outline: none;
 }
